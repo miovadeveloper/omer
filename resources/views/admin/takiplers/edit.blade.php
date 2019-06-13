@@ -98,7 +98,7 @@
                     {{ trans('cruds.takipler.fields.durum_helper') }}
                 </p>
             </div>
-            <div class="form-group {{ $errors->has('tarih') ? 'has-error' : '' }}">
+            <div class="form-group d-none  {{ $errors->has('tarih') ? 'has-error' : '' }}">
                 <label for="tarih">{{ trans('cruds.takipler.fields.tarih') }}</label>
                 <input type="text" id="tarih" name="tarih" class="form-control date" value="{{ old('tarih', isset($takipler) ? $takipler->tarih : '') }}">
                 @if($errors->has('tarih'))
@@ -110,7 +110,7 @@
                     {{ trans('cruds.takipler.fields.tarih_helper') }}
                 </p>
             </div>
-            <div class="form-group {{ $errors->has('kilo_kg') ? 'has-error' : '' }}">
+            <div class="form-group d-none  {{ $errors->has('kilo_kg') ? 'has-error' : '' }}">
                 <label for="kilo_kg">{{ trans('cruds.takipler.fields.kilo_kg') }}</label>
                 <input type="text" id="kilo_kg" name="kilo_kg" class="form-control" value="{{ old('kilo_kg', isset($takipler) ? $takipler->kilo_kg : '') }}">
                 @if($errors->has('kilo_kg'))
@@ -122,7 +122,7 @@
                     {{ trans('cruds.takipler.fields.kilo_kg_helper') }}
                 </p>
             </div>
-            <div class="form-group {{ $errors->has('vki') ? 'has-error' : '' }}">
+            <div class="form-group d-none  {{ $errors->has('vki') ? 'has-error' : '' }}">
                 <label for="vki">{{ trans('cruds.takipler.fields.vki') }}</label>
                 <input type="text" id="vki" name="vki" class="form-control" value="{{ old('vki', isset($takipler) ? $takipler->vki : '') }}">
                 @if($errors->has('vki'))
@@ -134,7 +134,7 @@
                     {{ trans('cruds.takipler.fields.vki_helper') }}
                 </p>
             </div>
-            <div class="form-group {{ $errors->has('sat') ? 'has-error' : '' }}">
+            <div class="form-group d-none {{ $errors->has('sat') ? 'has-error' : '' }}">
                 <label for="sat">{{ trans('cruds.takipler.fields.sat') }}</label>
                 <input type="text" id="sat" name="sat" class="form-control" value="{{ old('sat', isset($takipler) ? $takipler->sat : '') }}">
                 @if($errors->has('sat'))
@@ -146,7 +146,7 @@
                     {{ trans('cruds.takipler.fields.sat_helper') }}
                 </p>
             </div>
-            <div class="form-group {{ $errors->has('boy_cm') ? 'has-error' : '' }}">
+            <div class="form-group d-none {{ $errors->has('boy_cm') ? 'has-error' : '' }}">
                 <label for="boy_cm">{{ trans('cruds.takipler.fields.boy_cm') }}</label>
                 <input type="text" id="boy_cm" name="boy_cm" class="form-control" value="{{ old('boy_cm', isset($takipler) ? $takipler->boy_cm : '') }}">
                 @if($errors->has('boy_cm'))
@@ -158,7 +158,7 @@
                     {{ trans('cruds.takipler.fields.boy_cm_helper') }}
                 </p>
             </div>
-            <div class="form-group {{ $errors->has('oyku') ? 'has-error' : '' }}">
+            <div class="form-group d-none {{ $errors->has('oyku') ? 'has-error' : '' }}">
                 <label for="oyku">{{ trans('cruds.takipler.fields.oyku') }}</label>
                 <textarea id="oyku" name="oyku" class="form-control ">{{ old('oyku', isset($takipler) ? $takipler->oyku : '') }}</textarea>
                 @if($errors->has('oyku'))
@@ -170,7 +170,7 @@
                     {{ trans('cruds.takipler.fields.oyku_helper') }}
                 </p>
             </div>
-            <div class="form-group {{ $errors->has('sat_emin') ? 'has-error' : '' }}">
+            <div class="form-group d-none {{ $errors->has('sat_emin') ? 'has-error' : '' }}">
                 <label>{{ trans('cruds.takipler.fields.sat_emin') }}</label>
                 @foreach(App\Takipler::SAT_EMIN_RADIO as $key => $label)
                     <div>
@@ -184,7 +184,7 @@
                     </em>
                 @endif
             </div>
-            <div class="form-group {{ $errors->has('geb_haft_duzeltildi') ? 'has-error' : '' }}">
+            <div class="form-group d-none {{ $errors->has('geb_haft_duzeltildi') ? 'has-error' : '' }}">
                 <label>{{ trans('cruds.takipler.fields.geb_haft_duzeltildi') }}</label>
                 @foreach(App\Takipler::GEB_HAFT_DUZELTILDI_RADIO as $key => $label)
                     <div>
@@ -198,7 +198,7 @@
                     </em>
                 @endif
             </div>
-            <div class="form-group {{ $errors->has('bir_trimaster') ? 'has-error' : '' }}">
+            <div class="form-group d-none {{ $errors->has('bir_trimaster') ? 'has-error' : '' }}">
                 <label for="bir_trimaster">{{ trans('cruds.takipler.fields.bir_trimaster') }}</label>
                 <input type="text" id="bir_trimaster" name="bir_trimaster" class="form-control" value="{{ old('bir_trimaster', isset($takipler) ? $takipler->bir_trimaster : '') }}">
                 @if($errors->has('bir_trimaster'))
@@ -210,7 +210,7 @@
                     {{ trans('cruds.takipler.fields.bir_trimaster_helper') }}
                 </p>
             </div>
-            <div class="form-group {{ $errors->has('genetik_inceleme') ? 'has-error' : '' }}">
+            <div class="form-group d-none {{ $errors->has('genetik_inceleme') ? 'has-error' : '' }}">
                 <label for="genetik_inceleme">{{ trans('cruds.takipler.fields.genetik_inceleme') }}</label>
                 <textarea id="genetik_inceleme" name="genetik_inceleme" class="form-control ">{{ old('genetik_inceleme', isset($takipler) ? $takipler->genetik_inceleme : '') }}</textarea>
                 @if($errors->has('genetik_inceleme'))
@@ -222,7 +222,7 @@
                     {{ trans('cruds.takipler.fields.genetik_inceleme_helper') }}
                 </p>
             </div>
-            <div class="form-group {{ $errors->has('fetal_dna') ? 'has-error' : '' }}">
+            <div class="form-group d-none {{ $errors->has('fetal_dna') ? 'has-error' : '' }}">
                 <label for="fetal_dna">{{ trans('cruds.takipler.fields.fetal_dna') }}</label>
                 <textarea id="fetal_dna" name="fetal_dna" class="form-control ">{{ old('fetal_dna', isset($takipler) ? $takipler->fetal_dna : '') }}</textarea>
                 @if($errors->has('fetal_dna'))
@@ -234,7 +234,7 @@
                     {{ trans('cruds.takipler.fields.fetal_dna_helper') }}
                 </p>
             </div>
-            <div class="form-group {{ $errors->has('fat') ? 'has-error' : '' }}">
+            <div class="form-group d-none {{ $errors->has('fat') ? 'has-error' : '' }}">
                 <label for="fat">{{ trans('cruds.takipler.fields.fat') }}</label>
                 <textarea id="fat" name="fat" class="form-control ">{{ old('fat', isset($takipler) ? $takipler->fat : '') }}</textarea>
                 @if($errors->has('fat'))
@@ -246,7 +246,7 @@
                     {{ trans('cruds.takipler.fields.fat_helper') }}
                 </p>
             </div>
-            <div class="form-group {{ $errors->has('iki_trimaster') ? 'has-error' : '' }}">
+            <div class="form-group d-none  {{ $errors->has('iki_trimaster') ? 'has-error' : '' }}">
                 <label for="iki_trimaster">{{ trans('cruds.takipler.fields.iki_trimaster') }}</label>
                 <input type="text" id="iki_trimaster" name="iki_trimaster" class="form-control" value="{{ old('iki_trimaster', isset($takipler) ? $takipler->iki_trimaster : '') }}">
                 @if($errors->has('iki_trimaster'))
@@ -258,7 +258,7 @@
                     {{ trans('cruds.takipler.fields.iki_trimaster_helper') }}
                 </p>
             </div>
-            <div class="form-group {{ $errors->has('g_t_t') ? 'has-error' : '' }}">
+            <div class="form-group d-none {{ $errors->has('g_t_t') ? 'has-error' : '' }}">
                 <label for="g_t_t">{{ trans('cruds.takipler.fields.g_t_t') }}</label>
                 <textarea id="g_t_t" name="g_t_t" class="form-control ">{{ old('g_t_t', isset($takipler) ? $takipler->g_t_t : '') }}</textarea>
                 @if($errors->has('g_t_t'))

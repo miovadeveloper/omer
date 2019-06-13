@@ -47,7 +47,7 @@
                     </em>
                 @endif
             </div>
-            <div class="form-group {{ $errors->has('laboratuvar_dosya') ? 'has-error' : '' }}">
+            <div class="form-group d-none {{ $errors->has('laboratuvar_dosya') ? 'has-error' : '' }}">
                 <label for="laboratuvar_dosya">{{ trans('cruds.laboratuvar.fields.laboratuvar_dosya') }}</label>
                 <div class="needsclick dropzone" id="laboratuvar_dosya-dropzone">
 

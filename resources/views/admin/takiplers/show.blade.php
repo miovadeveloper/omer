@@ -155,6 +155,18 @@
                         </em>
                     @endif
                 </div>
+                <div class="form-group   {{ $errors->has('tarih') ? 'has-error' : '' }}">
+                    <label for="tarih">{{ trans('cruds.takipler.fields.tarih') }}</label>
+                    <input type="text" id="tarih" name="tarih" class="form-control date" value="{{ old('tarih', isset($takipler) ? $takipler->tarih : '') }}">
+                    @if($errors->has('tarih'))
+                        <em class="invalid-feedback">
+                            {{ $errors->first('tarih') }}
+                        </em>
+                    @endif
+                    <p class="helper-block">
+                        {{ trans('cruds.takipler.fields.tarih_helper') }}
+                    </p>
+                </div>
 
                 <div class="form-group {{ $errors->has('kilo_kg') ? 'has-error' : '' }}">
                     <label for="kilo_kg">{{ trans('cruds.takipler.fields.kilo_kg') }}</label>
@@ -851,12 +863,7 @@
                         <th>
                             {{ trans('cruds.laboratuvar.fields.tetkik_detaylari') }}
                         </th>
-                        <th>
-                            {{ trans('cruds.laboratuvar.fields.takip') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.laboratuvar.fields.laboratuvar_dosya') }}
-                        </th>
+
                         <th>
                             &nbsp;
                         </th>
@@ -874,18 +881,8 @@
                             <td>
                                 {{ $laboratuvar->tetkik_detaylari ?? '' }}
                             </td>
-                            <td>
-                                {{ $laboratuvar->takip->takip_tipi ?? '' }}
-                            </td>
-                            <td>
-                                @if($laboratuvar->laboratuvar_dosya)
-                                    @foreach($laboratuvar->laboratuvar_dosya as $key => $media)
-                                        <a href="{{ $media->getUrl() }}" target="_blank">
-                                            {{ trans('global.view_file') }}
-                                        </a>
-                                    @endforeach
-                                @endif
-                            </td>
+
+
                             <td>
                                 @can('laboratuvar_show')
                                     <a class="btn btn-xs btn-primary" href="{{ route('admin.laboratuvars.show', $laboratuvar->id) }}">
