@@ -10,7 +10,7 @@
         <form action="{{ route("admin.hastalars.store") }}" method="POST" enctype="multipart/form-data">
             @csrf
 
-            <div class="row"><
+            <div class="row">
 
           <div class="col-sm-12"> <h3>Hasta Genel Bilgiler
           </h3></div>
