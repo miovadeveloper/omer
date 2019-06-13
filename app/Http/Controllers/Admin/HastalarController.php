@@ -69,6 +69,7 @@ class HastalarController extends Controller
         $hasta_kategorisis = HastaKategorileri::all()->pluck('hastak', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         return view('admin.hastalars.create', compact('hasta_kategorisis'));
+        return redirect()->route('admin.hastalars.show',hasta);
 
     }
 
@@ -78,7 +79,8 @@ class HastalarController extends Controller
 
         $hastalar = Hastalar::create($request->all());
 
-        return redirect()->route('admin.hastalars.index');
+        return redirect()->route('admin.hastalars.show',$hastalar->id);
+
     }
 
     public function edit(Hastalar $hastalar)
