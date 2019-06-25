@@ -7,7 +7,7 @@
                     <i class="nav-icon fas fa-fw fa-tachometer-alt">
 
                     </i>
-                    {{ trans('global.dashboard') }}
+                    {{ trans('global.dashboard') }} deneme
                 </a>
             </li>
             @can('hastalar_access')
