@@ -18,11 +18,26 @@ class Hastalar extends Model
 
 
     const ESININ_ALKOL_KULLANIMI_SELECT = [
-        'ko' => 'ko',
+        'Kullanıyor'                     => 'Kullanıyor',
+        'Kullanmıyor'                    => 'Kullanmıyor',
+        'Daha önce kullanmış, bırakmış'  => 'Daha önce kullanmış, bırakmış',
+        'Ayda 1-2 kere kullanıyor'       => 'Ayda 1-2 kere kullanıyor',
+        'Haftada 1-2 kere kullanıyor'    => 'Haftada 1-2 kere kullanıyor',
+        'Her gün 1 büyükten fazla'       => 'Her gün 1 büyükten fazla',
+        'Her gün 1 büyük - 1 ufak arası' => 'Her gün 1 büyük - 1 ufak arası',
+        'Her gün 1-2 kadeh'              => 'Her gün 1-2 kadeh',
+        'Her gün 3-5 kadeh'              => 'Her gün 3-5 kadeh',
     ];
 
     const ESININ_SIGARA_KULLANIMI_SELECT = [
-        'ko' => 'ko',
+        'Kullanıyor'                    => 'Kullanıyor',
+        'Kullanmıyor'                   => 'Kullanmıyor',
+        'Daha önce kullanmış, bırakmış' => 'Daha önce kullanmış, bırakmış',
+        'Her gün 1-5 arası'             => 'Her gün 1-5 arası',
+        'Her gün 5-10 arası'            => 'Her gün 5-10 arası',
+        'Her gün 10-20 arası'           => 'Her gün 10-20 arası',
+        'Her gün 20-40 arası'           => 'Her gün 20-40 arası',
+        'Her gün 40 tan fazla'          => 'Her gün 40 tan fazla',
     ];
 
     const PMS_RADIO = [
@@ -209,6 +224,8 @@ class Hastalar extends Model
         'esinin_sigara_kullanimi',
         'ozgecmis_ve_soygecmis_notlari',
         'esinin_ozgecmis_ve_soygecmis_notlari',
+        'dogum_sekli',
+
     ];
 
     public function hasta_kategorisi()

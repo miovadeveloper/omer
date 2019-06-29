@@ -39,7 +39,13 @@
                             {{ trans('cruds.dokumanlar.fields.dosya') }}
                         </th>
                         <td>
-                            {{ $dokumanlar->dosya }}
+                            @if($dokumanlar->dosya)
+                                @foreach($dokumanlar->dosya as $key => $media)
+                                    <a href="{{ $media->getUrl() }}" target="_blank">
+                                       Dosya İndir
+                                    </a>
+                                @endforeach
+                            @endif
                         </td>
                     </tr>
                     <tr>
@@ -53,7 +59,7 @@
                 </tbody>
             </table>
             <a style="margin-top:20px;" class="btn btn-default" href="{{ url()->previous() }}">
-                Back
+                Geri Dön
             </a>
         </div>
     </div>

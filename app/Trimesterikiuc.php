@@ -45,6 +45,9 @@ class Trimesterikiuc extends Model
         'usg_ile_hafta',
         'sat_ile_hafta',
         'servikal_kanal',
+        'trimestertipi',
+        'plesanta',
+
     ];
 
     public function getTarihAttribute($value)

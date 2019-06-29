@@ -10,6 +10,25 @@
         <form action="{{ route("admin.trimesterikiucs.update", [$trimesterikiuc->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
+
+            <div class="form-group  {{ $errors->has('trimestertipi') ? 'has-error' : '' }}">
+                <label for="trimestertipi">{{ trans('cruds.trimesterikiuc.fields.trimestertipi') }}</label>
+                <select name="trimestertipi" id="trimestertipi" class="form-control select2">
+                    <option value=" " >Lütfen Seçiniz</option>
+
+                    <option value="Trimester 2" >Trimester 2</option>
+                        <option value="Trimester 3" >Trimester 3</option>
+
+                </select>
+
+                @if($errors->has('trimestertipi'))
+                    <em class="invalid-feedback">
+                        {{ $errors->first('trimestertipi') }}
+                    </em>
+                @endif
+            </div>
+
+
             <div class="form-group {{ $errors->has('tarih') ? 'has-error' : '' }}">
                 <label for="tarih">{{ trans('cruds.trimesterikiuc.fields.tarih') }}</label>
                 <input type="text" id="tarih" name="tarih" class="form-control date" value="{{ old('tarih', isset($trimesterikiuc) ? $trimesterikiuc->tarih : '') }}">
@@ -22,6 +41,7 @@
                     {{ trans('cruds.trimesterikiuc.fields.tarih_helper') }}
                 </p>
             </div>
+
             <div class="form-group {{ $errors->has('sat_ile_hafta') ? 'has-error' : '' }}">
                 <label for="sat_ile_hafta">{{ trans('cruds.trimesterikiuc.fields.sat_ile_hafta') }}</label>
                 <input type="text" id="sat_ile_hafta" name="sat_ile_hafta" class="form-control" value="{{ old('sat_ile_hafta', isset($trimesterikiuc) ? $trimesterikiuc->sat_ile_hafta : '') }}">
@@ -34,6 +54,8 @@
                     {{ trans('cruds.trimesterikiuc.fields.sat_ile_hafta_helper') }}
                 </p>
             </div>
+
+
             <div class="form-group {{ $errors->has('sat_ile_gun') ? 'has-error' : '' }}">
                 <label for="sat_ile_gun">{{ trans('cruds.trimesterikiuc.fields.sat_ile_gun') }}</label>
                 <input type="text" id="sat_ile_gun" name="sat_ile_gun" class="form-control" value="{{ old('sat_ile_gun', isset($trimesterikiuc) ? $trimesterikiuc->sat_ile_gun : '') }}">
@@ -192,7 +214,7 @@
                     </em>
                 @endif
             </div>
-            <div class="form-group {{ $errors->has('takip_id') ? 'has-error' : '' }}">
+            <div class="form-group d-none {{ $errors->has('takip_id') ? 'has-error' : '' }}">
                 <label for="takip">{{ trans('cruds.trimesterikiuc.fields.takip') }}</label>
                 <select name="takip_id" id="takip" class="form-control select2">
                     @foreach($takips as $id => $takip)
@@ -205,10 +227,29 @@
                     </em>
                 @endif
             </div>
+            <div class="form-group {{ $errors->has('plesanta') ? 'has-error' : '' }}">
+                <label for="plesanta">{{ trans('cruds.trimesterikiuc.fields.plesanta') }}</label>
+                <input type="text" id="plesanta" name="plesanta" class="form-control" value="{{ old('plesanta', isset($trimesterikiuc) ? $trimesterikiuc->plesanta : '') }}">
+                @if($errors->has('plesanta'))
+                    <em class="invalid-feedback">
+                        {{ $errors->first('plesanta') }}
+                    </em>
+                @endif
+                <p class="helper-block">
+                    {{ trans('cruds.trimesterikiuc.fields.plesanta_helper') }}
+                </p>
+            </div>
+
             <div>
                 <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
             </div>
         </form>
     </div>
 </div>
+
+
+
+
+
+
 @endsection

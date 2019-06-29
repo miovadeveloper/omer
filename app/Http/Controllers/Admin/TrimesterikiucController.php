@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Hastalar;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyTrimesterikiucRequest;
 use App\Http\Requests\StoreTrimesterikiucRequest;
@@ -10,7 +11,7 @@ use App\Takipler;
 use App\Trimesterikiuc;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
-
+use Illuminate\Support\Facades\DB;
 class TrimesterikiucController extends Controller
 {
     public function index()
@@ -48,7 +49,7 @@ class TrimesterikiucController extends Controller
 
         $trimesterikiuc->load('takip');
 
-        return view('admin.trimesterikiucs.edit', compact('takips', 'trimesterikiuc'));
+        return view('admin.trimesterikiucs.edit', compact('takips', 'trimesterikiuc',));
         return redirect()->route('admin.takiplers.show',$trimesterikiuc->takip_id);
 
     }

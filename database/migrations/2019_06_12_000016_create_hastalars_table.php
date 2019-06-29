@@ -55,6 +55,9 @@ class CreateHastalarsTable extends Migration
             $table->string('alkol')->nullable();
             $table->string('tc_kimlik_no')->nullable();
             $table->string('sigara')->nullable();
+            $table->string('dogum_sekli')->nullable();
+
+            $table->string('dogum_sekli2')->nullable();
             $table->string('ilaclar')->nullable();
             $table->longText('ozgecmis_ve_soygecmis_notlari')->nullable();
             $table->longText('uyarilar')->nullable();

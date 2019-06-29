@@ -43,7 +43,7 @@
                                 <i class="icon-basket-loaded"></i> Trimester1</a>
                         </li>      <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#trimesteriki02" role="tab" aria-controls="trimesteriki">
-                                <i class="icon-basket-loaded"></i> Trimester2</a>
+                                <i class="icon-basket-loaded"></i> Trimester2-3</a>
                         </li>
                         </li>      <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#tarama03" role="tab" aria-controls="tarama">
@@ -125,7 +125,7 @@
 
 
 
-            <form action="{{ route("admin.takiplers.update", [$takipler->id]) }}" method="POST" enctype="multipart/form-data">
+            <form name="dates" action="{{ route("admin.takiplers.update", [$takipler->id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-group d-none {{ $errors->has('takip_tipi') ? 'has-error' : '' }}">
@@ -168,7 +168,20 @@
                     </p>
                 </div>
 
-                <div class="form-group {{ $errors->has('kilo_kg') ? 'has-error' : '' }}">
+                <div class="row">
+                <div class="form-group col-2 {{ $errors->has('boy_cm') ? 'has-error' : '' }}">
+                    <label for="boy_cm">{{ trans('cruds.takipler.fields.boy_cm') }}</label>
+                    <input type="text" id="boy_cm" name="boy_cm" class="form-control" value="{{ old('boy_cm', isset($takipler) ? $takipler->boy_cm : '') }}">
+                    @if($errors->has('boy_cm'))
+                        <em class="invalid-feedback">
+                            {{ $errors->first('boy_cm') }}
+                        </em>
+                    @endif
+                    <p class="helper-block">
+                        {{ trans('cruds.takipler.fields.boy_cm_helper') }}
+                    </p>
+                </div>
+                <div class="form-group col-2 {{ $errors->has('kilo_kg') ? 'has-error' : '' }}">
                     <label for="kilo_kg">{{ trans('cruds.takipler.fields.kilo_kg') }}</label>
                     <input type="text" id="kilo_kg" name="kilo_kg" class="form-control" value="{{ old('kilo_kg', isset($takipler) ? $takipler->kilo_kg : '') }}">
                     @if($errors->has('kilo_kg'))
@@ -180,6 +193,17 @@
                         {{ trans('cruds.takipler.fields.kilo_kg_helper') }}
                     </p>
                 </div>
+
+                    <div class="form-group col-2">
+
+                    <input type="button" style="margin-top: 25px" value="VKİ Hesapla" class="btn btn-success" onClick="bkihesap()">
+
+                    </div>
+
+
+
+                </div>
+
                 <div class="form-group {{ $errors->has('vki') ? 'has-error' : '' }}">
                     <label for="vki">{{ trans('cruds.takipler.fields.vki') }}</label>
                     <input type="text" id="vki" name="vki" class="form-control" value="{{ old('vki', isset($takipler) ? $takipler->vki : '') }}">
@@ -192,9 +216,312 @@
                         {{ trans('cruds.takipler.fields.vki_helper') }}
                     </p>
                 </div>
-                <div class="form-group {{ $errors->has('sat') ? 'has-error' : '' }}">
+
+
+
+
+
+                <script language="JavaScript" type="text/javascript">
+
+
+                    <!--
+
+
+
+
+                    //general purpose function to see if an input value has been entered at all
+
+                    function isEmpty(inputStr){if(inputStr==""||inputStr==null){return true
+
+                    }return false
+
+                    }//general purpose function to see if a suspected numeric input
+
+                    //is a positive integer
+
+                    function isNumber(inputStr){for(var i=0;i<inputStr.length;i++){var oneChar=inputStr.charAt(i)
+
+                        if(oneChar<"0"||oneChar>"9"){return false
+
+                        }}return true
+
+                    }//function to determine if value is in acceptable range for this application
+
+                    function inRangeDay(inputStr){num=parseInt(inputStr)
+
+                        if(num<1||num>31){return false
+
+                        }return true
+
+                    }//function to determine if value is in acceptable range for this application
+
+                    function inRangeYear(inputStr){num=parseInt(inputStr)
+
+                        if(num<1900||num>3000){return false
+
+                        }return true
+
+                    }//Master value validator routine for day
+
+                    function isValidDay(inputStr){if(isEmpty(inputStr)){alert("Lütfen son adet tarihinizin gününü giriniz.")
+
+                        return false
+
+                    }else{if(!isNumber(inputStr)){alert("Belirttiğiniz gün sayısal bir değer olmalıdır")
+
+                        return false
+
+                    }else{if(!inRangeDay(inputStr)){alert("Lütfen geçerli bir gün belirtiniz.")
+
+                        return false
+
+                    }}}return true
+
+                    }//Master value validator routine for year
+
+                    function isValidYear(inputStr){if(isEmpty(inputStr)){alert("Lütfen son adet tarihinizin yılını giriniz.")
+
+                        return false
+
+                    }else{if(!isNumber(inputStr)){alert("Belirttiğiniz yıl sayısal bir değer olmalıdır.")
+
+                        return false
+
+                    }else{if(!inRangeYear(inputStr)){alert("Lütfen geçerli bir yıl belirtiniz.")
+
+                        return false
+
+                    }}}return true
+
+                    }function makeArray(n){this.length=n
+
+                        for(var i=1;i<=n;i++)
+
+                            this[i]=null
+
+                        return this
+
+                    }var maxday=new makeArray(12)
+
+                    maxday[1]=31
+
+                    maxday[2]=28
+
+                    maxday[3]=31
+
+                    maxday[4]=30
+
+                    maxday[5]=31
+
+                    maxday[6]=30
+
+                    maxday[7]=31
+
+                    maxday[8]=31
+
+                    maxday[9]=30
+
+                    maxday[10]=31
+
+                    maxday[11]=30
+
+                    maxday[12]=31
+
+
+
+                    var monthname=new makeArray(12)
+
+                    monthname[1]="Ocak"
+
+                    monthname[2]="Şubat"
+
+                    monthname[3]="Mart"
+
+                    monthname[4]="Nisan"
+
+                    monthname[5]="Mayıs"
+
+                    monthname[6]="Haziran"
+
+                    monthname[7]="Temmuz"
+
+                    monthname[8]="Ağustos"
+
+                    monthname[9]="Eylül"
+
+                    monthname[10]="Ekim"
+
+                    monthname[11]="Kasım"
+
+                    monthname[12]="Aralık"
+
+
+
+                    var adddays=new makeArray(7)
+
+                    adddays[1]=14
+
+                    adddays[2]=35
+
+                    adddays[3]=70
+
+                    adddays[4]=84
+
+                    adddays[5]=161
+
+                    adddays[6]=189
+
+                    adddays[7]=280
+
+
+
+                    //Calculate the date string
+
+                    function calcNewDate(month,day,year,adddays){newday=eval(day)+adddays
+
+                        newmonth=month+1
+
+                        newyear=eval(year)
+
+                        var max
+
+
+
+                        for(var i=0;i<12;i++){if(newmonth==2&&(newyear%4)==0){max=29
+
+                        }else
+
+                            max=maxday[newmonth]
+
+
+
+                            if(newday>max){newday=newday-max
+
+                                newmonth=newmonth+1
+
+                                if(newmonth>12){newyear=newyear+1
+
+                                    newmonth=1
+
+                                }}else
+
+                                break
+
+                        }var datestring=monthname[newmonth]+" "+newday+", "+newyear
+
+                        return datestring
+
+                    }//Get the date entered and calculate the rest of the dates
+
+                    function calc(form){day=form.day.value
+
+                        year=form.year.value
+
+                        monthnum=form.month.selectedIndex
+
+
+
+                        if(isValidDay(day)){if(isValidYear(year)){form.tahminidogum.value=calcNewDate(monthnum,day,year,adddays[7])
+
+                            {day=form.day.value;year=form.year.value;aybul=form.month.selectedIndex+1;var aybul;var now=new Date();var mil=aybul+'/'+day+'/'+year
+                                var mildate=new Date(mil)
+                                var fark=now.getTime()-mildate.getTime()
+                                var gun
+                                var top=Math.floor(fark/(1000))
+                                gun=Math.floor(top/(60*60*24)/7)
+                                top=-gun*(24*60*60)
+
+
+                                form.shafta.value=gun
+                                if(isValidDay(day)){if(isValidYear(year)){form.shafta.value=gun
+
+                                    var gun1
+                                    var top=Math.floor(fark/(1000))
+                                    gun1=Math.floor(top/(60*60*24))-(7*form.shafta.value)
+                                    top-=gun1*(24*60*60)
+                                    form.sgun.value=gun1
+                                    if(isValidDay(day)){if(isValidYear(year)){form.sgun.value=gun1
+                                    }}}}}}}}//-->
+
+
+
+
+                </script>
+
+
+
+
+
+
+                <!-- /.modal-->
+                <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-success" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Tahmini Gebelik Hesaplama</h4>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <input size="2" name="day" id="input2" type="text" />
+                                <select id="input3" size="1" name="month">
+                                    <option selected="selected">Ocak</option>
+                                    <option>Şubat</option>
+                                    <option>Mart</option>
+                                    <option>Nisan</option>
+                                    <option>Mayıs</option>
+                                    <option>Haziran</option>
+                                    <option>Temmuz</option>
+                                    <option>Ağustos</option>
+                                    <option>Eyl&uuml;l</option>
+                                    <option>Ekim</option>
+                                    <option>Kasım</option>
+                                    <option>Aralık</option>
+                                </select>
+
+                                <select id="input1" size="1" name="year">
+                                    <option selected="selected">2019</option>
+                                    <option>2018</option>
+
+                                </select>
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Kaydet</button>
+                                <button class="btn btn-success" onclick="calc(this.form)" type="button"> Hesapla</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content-->
+                    </div>
+                    <!-- /.modal-dialog-->
+                </div>
+                <!-- /.modal-->
+                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+
+
+                <script type="text/javascript">
+
+                    $(function() {
+                        $('#input1, #input2 ,#input3').on('input', function() {
+                            $('#sat').val(
+                                $('#input1, #input2 ,#input3').map(function() {
+                                    return $(this).val();
+                                }).get().join(' ') /* added space */
+                            );
+                        });
+                    });
+
+
+                </script>
+
+                <div class="row">
+
+                <div class="form-group col-md-4  {{ $errors->has('sat') ? 'has-error' : '' }}">
                     <label for="sat">{{ trans('cruds.takipler.fields.sat') }}</label>
-                    <input type="text" id="sat" name="sat" class="form-control" value="{{ old('sat', isset($takipler) ? $takipler->sat : '') }}">
+                    <input type="text" id="sat" name="sat" class="form-control" value="{{ old('sat', isset($takipler) ? $takipler->sat : '') }}"disabled>
                     @if($errors->has('sat'))
                         <em class="invalid-feedback">
                             {{ $errors->first('sat') }}
@@ -204,18 +531,55 @@
                         {{ trans('cruds.takipler.fields.sat_helper') }}
                     </p>
                 </div>
-                <div class="form-group {{ $errors->has('boy_cm') ? 'has-error' : '' }}">
-                    <label for="boy_cm">{{ trans('cruds.takipler.fields.boy_cm') }}</label>
-                    <input type="text" id="boy_cm" name="boy_cm" class="form-control" value="{{ old('boy_cm', isset($takipler) ? $takipler->boy_cm : '') }}">
-                    @if($errors->has('boy_cm'))
+                    <div class="form-group col-2">
+
+                        <button class="btn btn-success " type="button" style="margin-top: 25px" data-toggle="modal" data-target="#successModal"> Gebelik Hesaplama </button>
+
+                    </div>
+
+                </div>
+                <div class="row">
+
+                <div class="form-group col-md-4 {{ $errors->has('shafta') ? 'has-error' : '' }}">
+                    <label for="shafta">{{ trans('cruds.takipler.fields.shafta') }}</label>
+                    <input type="text" id="shafta" name="shafta" class="form-control" value="{{ old('shafta', isset($takipler) ? $takipler->shafta : '') }}">
+                    @if($errors->has('shafta'))
                         <em class="invalid-feedback">
-                            {{ $errors->first('boy_cm') }}
+                            {{ $errors->first('shafta') }}
                         </em>
                     @endif
                     <p class="helper-block">
-                        {{ trans('cruds.takipler.fields.boy_cm_helper') }}
+                        {{ trans('cruds.takipler.fields.shafta_helper') }}
                     </p>
                 </div>
+
+                <div class="form-group col-md-4 {{ $errors->has('sgun') ? 'has-error' : '' }}">
+                    <label for="sgun">{{ trans('cruds.takipler.fields.sgun') }}</label>
+                    <input type="text" id="sgun" name="sgun" class="form-control" value="{{ old('sgun', isset($takipler) ? $takipler->sgun : '') }}">
+                    @if($errors->has('sgun'))
+                        <em class="invalid-feedback">
+                            {{ $errors->first('sgun') }}
+                        </em>
+                    @endif
+                    <p class="helper-block">
+                        {{ trans('cruds.takipler.fields.sgun_helper') }}
+                    </p>
+                </div>
+
+                <div class="form-group col-md-4 {{ $errors->has('tahminidogum') ? 'has-error' : '' }}">
+                    <label for="tahminidogum">{{ trans('cruds.takipler.fields.tahminidogum') }}</label>
+                    <input type="text" id="tahminidogum" name="tahminidogum" class="form-control" value="{{ old('tahminidogum', isset($takipler) ? $takipler->tahminidogum : '') }}">
+                    @if($errors->has('tahminidogum'))
+                        <em class="invalid-feedback">
+                            {{ $errors->first('tahminidogum') }}
+                        </em>
+                    @endif
+                    <p class="helper-block">
+                        {{ trans('cruds.takipler.fields.tahminidogum_helper') }}
+                    </p>
+                </div>
+
+</div>
                 <div class="form-group {{ $errors->has('oyku') ? 'has-error' : '' }}">
                     <label for="oyku">{{ trans('cruds.takipler.fields.oyku') }}</label>
                     <textarea id="oyku" name="oyku" class="form-control ">{{ old('oyku', isset($takipler) ? $takipler->oyku : '') }}</textarea>
@@ -261,6 +625,10 @@
                     <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
                 </div>
             </form>
+
+
+
+
 
 
         </div>
@@ -1129,7 +1497,7 @@
                                 @if($dokumanlar->dosya)
                                     @foreach($dokumanlar->dosya as $key => $media)
                                         <a href="{{ $media->getUrl() }}" target="_blank">
-                                            {{ trans('global.view_file') }}
+                                            Dosya İndir
                                         </a>
                                     @endforeach
                                 @endif
@@ -1263,4 +1631,15 @@
 
             </div>   </div>
 
+        <script>
+            function bkihesap() {
+                var kilosu = document.dates.kilo_kg.value
+                var boyu = document.dates.boy_cm.value
+
+                if(boyu > 1 && kilosu > 1){
+                    var bkisonucu = kilosu/(boyu*boyu/10000)
+                    document.dates.vki.value = bkisonucu.toFixed(2) }
+            }
+
+        </script>
 @endsection

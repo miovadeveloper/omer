@@ -76,7 +76,9 @@
                     {{ trans('cruds.hastalar.fields.dogum_tarihi_helper') }}
                 </p>
             </div>
-            <div class="form-group col-sm-4{{ $errors->has('telefon_ev') ? 'has-error' : '' }}">
+
+
+            <div class="form-group col-sm-4 d-none {{ $errors->has('telefon_ev') ? 'has-error' : '' }}">
                 <label for="telefon_ev">{{ trans('cruds.hastalar.fields.telefon_ev') }}</label>
                 <input type="number" id="telefon_ev" name="telefon_ev" class="form-control" value="{{ old('telefon_ev', isset($hastalar) ? $hastalar->telefon_ev : '') }}" step="1">
                 @if($errors->has('telefon_ev'))
@@ -567,6 +569,18 @@
                     {{ trans('cruds.hastalar.fields.dis_gebelik_helper') }}
                 </p>
             </div>
+
+                <div class="form-group col-sm-4{{ $errors->has('dogum_sekli') ? 'has-error' : '' }}">
+                    <label for="dogum_sekli">Doğum Şekli</label>
+                    <input type="text" id="dogum_sekli" name="dogum_sekli" class="form-control" value="{{ old('dogum_sekli', isset($hastalar) ? $hastalar->dogum_sekli : '') }}">
+                    @if($errors->has('dogum_sekli'))
+                        <em class="invalid-feedback">
+                            {{ $errors->first('dogum_sekli') }}
+                        </em>
+                    @endif
+                    <p class="helper-block">
+Doğum Şekli                    </p>
+                </div>
 
             <div class="col-sm-12"> <h3>Özgeçmiş Detayları ve Alışkanlıklar
                 <hr></h3></div>

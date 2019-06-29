@@ -10,6 +10,13 @@
         <div>
             <table class="table table-bordered table-striped">
                 <tbody>
+                <tr>
+                    <th>
+                        {{ trans('cruds.trimesterikiuc.fields.trimestertipi') }}
+                    </th>
+                    <td>
+                        {{ $trimesterikiuc->trimestertipi }}
+                        </tr>
                     <tr>
                         <th>
                             {{ trans('cruds.trimesterikiuc.fields.tarih') }}
@@ -127,7 +134,7 @@
                             {{ trans('cruds.trimesterikiuc.fields.randevu_tipi') }}
                         </th>
                         <td>
-                            {{ App\Trimesterikiuc::RANDEVU_TIPI_SELECT[$trimesterikiuc->randevu_tipi] }}
+                            {{ $trimesterikiuc->randevu_tipi }}
                         </td>
                     </tr>
                     <tr>
@@ -138,10 +145,17 @@
                             {{ $trimesterikiuc->takip->takip_tipi ?? '' }}
                         </td>
                     </tr>
+                <tr>
+                    <th>
+                        {{ trans('cruds.trimesterikiuc.fields.plesanta') }}
+                    </th>
+                    <td>
+                    {{ $trimesterikiuc->plesanta }}
+                </tr>
                 </tbody>
             </table>
             <a style="margin-top:20px;" class="btn btn-default" href="{{ url()->previous() }}">
-                Back
+                Geri Dön
             </a>
         </div>
     </div>
